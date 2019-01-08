@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Scrolling Nav - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+      <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/scrolling-nav.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="/index.html">Data Collection Framework</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/index.html">Home</a>
+            </li>
+          </ul>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/timeline/timeline.html">Timeline</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger active" href="/how_to/how_to.html">How to</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/contact/contact_us.html">Contact Us</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/FAQs/faqs.html">FAQs</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-primary text-white" style="padding-bottom: 80px">
+      <div class="container text-center">
+        <h1>Data collection process description</h1>
+        <p class="lead">(Beta)</p>
+      </div>
+    </header>
+
+  
+
+       <section id="about" style="padding: 40px">
+           
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+                    <ul class="nav">
+  <li class="nav-item">
+    <a class="nav-link active" href="#">How to record</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Extraction of images</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Video convertion</a>
+  </li>
+</ul>
+              <hr>
+              
+              <h3>How to record data?</h3>
+              <hr>
+            <h5 style="">Sensors and equipment required:</h5>
+              <ul>
+                  <li>ZED stereo camera</li>
+                  <li>Camera vaccum mount</li>
+                  <li>Multimeter</li>
+                  <li>Exide battery - (7V, 18Ah)</li>
+                  <li>US Global Sat GPS - BU353-S4</li>
+                  <li>Intel NUC</li>
+                  <li>6-48V automotive power supply for NUC</li>
+                  <li>A laptop to communicate with NUC</li>
+                  <li>A phone with hotspot to act as a communication bridge between laptop and Intel NUC</li>
+              </ul>
+              
+            <span ></span>
+        
+              <h5 style="">Step1: Before setting up</h5>
+              <ul>
+                  <li>Fully charge the battery</li>
+                  <li>After full charge, connect the DCDC power supplier to battery
+                  <ul>
+      <li>Make sure you have connected +ve(RED) to positive terminal of the battery and repeat same for -ve(BLACK) terminal. Do not connect in reverse, very important</li>
+      <li>Set the multimeter in DC Volts, and test the output from DCDC power supply. It should be around 19V. Minor fluctuations are okay. </li>     
+                      <li>In case of any other voltage, do not proceed as Intel NUC power board doesn't support</li>
+
+    </ul></li>
+              </ul>
+              
+                <h5 style="">Step2: Physical setup</h5>
+              <ul>
+                  <li>Mount the camera on the car using vaccum mount<ul><li>Make sure you place the camera at the same position</li></ul></li>
+                  <li>Place the battery in a fixed place for an uninterrupted power supply</li>
+                  <li>Place the Intel NUC on the car's dashboard<ul>
+                      <li>Connect the DCDC power supply</li>
+                      <li>Connect the ZED camera in one of the four USB 3.0 ports</li></ul></li>
+                  <li>Switch on the Intel NUC and Laptop and make sure you connect them to the same wifi hotspot</li>
+              </ul>
+              
+               <h4 style="">Step3: Technical setup</h4>
+              
+                  <p><strong>1.</strong>SSH to the Intel NUC using your laptop and login to the NUC system remotely
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>Varuns-MacBook-Pro:~ VarunPerla$ ssh arlcvit@172.20.10.**
+Password:
+</code></pre>  </div>
+</div></p>
+              
+               <p><strong>2.</strong>After logging your terminal show the following:
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~$
+</code></pre>  </div>
+</div></p>
+                  
+           <p><strong>3.</strong>Change the current directory to catkin workspace
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~$ cd catkin_ws/
+</code></pre>  </div>
+</div></p>
+           
+                   <p><strong>4.</strong>Source the setup.bash file
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~/catkin_ws$ source devel/setup.bash
+</code></pre>  </div>
+</div></p>
+                  
+                        <p><strong>5.</strong>Launch the ZED_CPU_ROS to collect the camera
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~/catkin_ws$ roslaunch zed_cpu_ros zed_cpu_ros.launch 
+</code></pre>  </div>
+</div>
+      
+     <strong>Immediately after you've launched the ROS wrapper, you can see something like this:</strong> 
+       <div class="card bg-light">
+  <div class="card-body">
+<pre><code>... logging to /home/arlcvit/.ros/log/b6ecb1cc-e400-11e8-959a-54b2030b0e50/roslaunch-arlcvit-NUC7i7DNHE-12563.log
+Checking log directory for disk usage. This may take awhile.
+Press Ctrl-C to interrupt
+Done checking log file disk usage. Usage is <1GB.
+
+started roslaunch server http://arlcvit-NUC7i7DNHE:35283/
+
+SUMMARY
+
+PARAMETERS
+ * /camera/zed_cpu_ros_node/config_file_location: /home/arlcvit/cat...
+ * /camera/zed_cpu_ros_node/device_id: 0
+ * /camera/zed_cpu_ros_node/encoding: bgr8
+ * /camera/zed_cpu_ros_node/frame_rate: 20
+ * /camera/zed_cpu_ros_node/left_frame_id: left_frame
+ * /camera/zed_cpu_ros_node/resolution: 1
+ * /camera/zed_cpu_ros_node/right_frame_id: right_frame
+ * /camera/zed_cpu_ros_node/show_image: False
+ * /camera/zed_cpu_ros_node/use_zed_config: False
+ * /rosdistro: melodic
+ * /rosversion: 1.14.3
+
+NODES
+  /camera/
+    zed_cpu_ros_node (zed_cpu_ros/zed_cpu_ros)
+
+auto-starting new master
+process[master]: started with pid [12573]
+ROS_MASTER_URI=http://localhost:11311
+
+setting /run_id to b6ecb1cc-e400-11e8-959a-54b2030b0e50
+process[rosout-1]: started with pid [12584]
+started core service [/rosout]
+process[camera/zed_cpu_ros_node-2]: started with pid [12587]
+[ INFO] [1541755236.259621299]: Try to initialize the camera
+[ INFO] [1541755236.314210930]: Stereo Camera Set Resolution 1, width 0.000000, height 0.000000
+[ INFO] [1541755236.314241583]: Initialized the camera
+[ INFO] [1541755236.357717886]: Try load camera calibration files
+[ INFO] [1541755236.357739803]: Loading from ROS calibration files
+[ INFO] [1541755236.358056241]: camera calibration URL: package://zed_cpu_ros/config/left.yaml
+[ INFO] [1541755236.359008290]: camera calibration URL: package://zed_cpu_ros/config/right.yaml
+[ INFO] [1541755236.360070922]: Got camera calibration files
+[ INFO] [1541755236.360088771]: Success, Camera found
+
+
+</code></pre>  </div>
+</div>
+      </p>
+      
+      
+      <div class="alert alert-danger" role="alert">
+<strong>Note:</strong> If the last line reads: "Camera not found" - Make sure you have logged into the Intel NUC(not remotely), but on the Intel NUC system itself</div>
+                               
+      
+               <p><strong>6. </strong>Now, we are almost ready to capture the data. But before that, lets check what all ROS topics are being published. To check the list - Open a new terminal in your laptop and login through SSH using the same process decribed above. 
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~$ rostopic list
+</code></pre>  </div>
+</div>
+      
+      <p>This will show you all the ROS topics being published. It should look something like this and so on.</p>
+                     <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~$ 
+/camera/left/image_raw 
+/camera/left/image_raw/compressed
+/camera/right/image_raw 
+/camera/right/image_raw/compressed
+.....
+</code></pre>  </div>
+</div>
+      
+      
+      </p>
+              
+    
+      <p><strong>7. </strong>Go to the desired folder where you want to store the recording and type this command
+                  <div class="card bg-light">
+  <div class="card-body">
+<pre><code>arlcvit@arlcvit-NUC7i7DNHE:~$ rosbag record /camera/left/image_raw/compressed
+</code></pre>  </div>
+</div></p>
+                  
+    <p><strong>8. </strong>After you have completed the drive and wanted to stop recording, Press <strong>Control+C</strong> together
+                 </p>
+
+    <p><strong>9. </strong>There are two terminals open in your laptop, you have already stopped recording in one terminal by presseing <strong>Control+C</strong> together. Now do the same in other terminal also
+                  </p>
+   
+<!--              routes plannned-->
+              
+<!--              data              -->
+              
+        
+              
+              
+               <hr>
+              
+              <h3>How to extract images?</h3>
+              <hr>
+            <h5 style="">Sensors and equipment required:</h5>
+              
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!--
+    <section id="services" class="bg-light" style="padding: 40px">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact Us</h2>
+            <p class="lead">Please feel free to drop a mail at mahender@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </section>
+-->
+
+<!--
+    <section id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact us</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero odio fugiat voluptatem dolor, provident officiis, id iusto! Obcaecati incidunt, qui nihil beatae magnam et repudiandae ipsa exercitationem, in, quo totam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+-->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-light">
+      <div class="container">
+        <p class="m-0 text-center">Copyright &copy; CVIT 2018</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+
+  </body>
+
+</html>
+
+
+
